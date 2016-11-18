@@ -21,7 +21,6 @@ div#popupCallback {
     left: 0;
     position: absolute;
     max-height: 80%;
-    overflow-y: auto;
     right: 0;
     padding: 20px;
     transition: 0.8s;
@@ -44,6 +43,7 @@ div#popupCallback {
 .callback_form_wrap input,
 .callback_form_wrap textarea {
     width: 100%;
+    max-height: 120px;
 }
 .callback_form_wrap p {
     margin: 10px 0;
