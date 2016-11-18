@@ -41,9 +41,10 @@ class Itdelight_Callback_AjaxController extends Mage_Core_Controller_Front_Actio
                     }
 
                     if ($key == 'tel_number') {
-                        if (!Zend_Validate::is(trim($item), 'NotEmpty')) {
+                        $validator = new Zend_Validate_Regex("/^[-0-9 ()]*$/");
+                        if (!($validator->isValid($item)) || !Zend_Validate::is(trim($item), 'NotEmpty')) {
                             $error = true;
-                            $errorMessageShown[] = $helper->__('Please fill in ' . $errorMessage[$key] . ' field');
+                            $errorMessageShown[] = 'Please fill in ' . $errorMessage[$key] . ' field properly';
                         }
                     }
                 }
@@ -55,10 +56,8 @@ class Itdelight_Callback_AjaxController extends Mage_Core_Controller_Front_Actio
                 $response['status']  = $helper->__('SUCCESS');
                 $response['message'] = $helper->__('Your inquiry was submitted and will be responded to as soon as possible. Thank you for contacting us.');
                 $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($response));
-                //$post['created'] = '2016-11-14 00:00:00';
                 $myFormModel = Mage::getModel('itdelight_callback/callback');
-                $myFormModel->setData($post)
-                            ->save();
+                $myFormModel->setData($post)->save();
 
                 return;
 

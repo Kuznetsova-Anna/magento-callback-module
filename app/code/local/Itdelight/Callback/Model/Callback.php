@@ -26,8 +26,8 @@ class Itdelight_Callback_Model_Callback extends Mage_Core_Model_Abstract
      */
     public function _beforeSave() {
         if($this->isObjectNew()) {
-            $data['created'] = Mage::getModel('core/date')->date('Y-m-d H:i:s');
-            $this->setData($data);
+            $date = Mage::getModel('core/date')->date('Y-m-d H:i:s');
+            $this->setCreated($date);
         }
 
         return parent::_beforeSave();

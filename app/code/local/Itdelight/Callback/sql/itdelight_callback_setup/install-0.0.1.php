@@ -41,7 +41,7 @@ if (!$installer->tableExists($tableCallback)) {
             'nullable'  => false,
         ))
         ->addColumn('called', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
-            'nullable'  => false,
+            'nullable'  => true,
         ));
     $installer->getConnection()->createTable($table);
 }

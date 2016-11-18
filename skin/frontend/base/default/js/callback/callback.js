@@ -32,17 +32,14 @@ var callbackForm = {
 
     ajaxForm: function()
     {
-       //console.log(_this.dataForm);
         var dataForm = new VarienForm(_this.formValid, true);
         var validator = dataForm.validator;
         jQuery(_this.formId).submit(function () {
             var content = jQuery(this).parents('div.callback-form');
             console.log(validator);
-            // console.log(dataForm.validator.validate());
             content.find('.errors-messages').remove();
             var data = this.serialize();
             console.log(data);
-            // console.log(this.validator.validate());
             jQuery.ajax({
                 type: "POST",
                 url: "/itdelight_callback/ajax",
