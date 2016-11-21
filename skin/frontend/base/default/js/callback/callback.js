@@ -13,7 +13,6 @@ function div_show(_this) {
 }
 jQuery(document).ready(function() {
     jQuery('.popupCallback .close').click(function () {
-        console.log("qwe!");
         jQuery(this).parents('.popupCallback').hide();
     });
 });
@@ -36,22 +35,19 @@ var callbackForm = {
         var validator = dataForm.validator;
         jQuery(_this.formId).submit(function () {
             var content = jQuery(this).parents('div.callback-form');
-            console.log(validator);
             content.find('.errors-messages').remove();
             var data = this.serialize();
-            console.log(data);
             jQuery.ajax({
                 type: "POST",
                 url: "/itdelight_callback/ajax",
                 data: data,
                 success: function (result) {
-                    var arr = JSON.parse(result);
-                    if (arr.status == 'SUCCESS') {
+                    if (result.status == 'SUCCESS') {
                         content.find('div.callback').hide();
                         content.find('div.successMessage').show();
-                        content.find('p.success').text(arr.message);
-                    } else if (arr.status == 'ERROR') {
-                        content.find('.submit').after('<p class="errors-messages">' + arr.message + '</p>');
+                        content.find('p.success').text(result.message);
+                    } else if (result.status == 'ERROR') {
+                        content.find('.button.submit').after('<p class="errors-messages">' + result.message + '</p>');
                     }
                 },
                 error: function () {

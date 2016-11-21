@@ -38,6 +38,8 @@ class Itdelight_Callback_Block_Callback
     protected function _prepareLayout() {
         if ($head = $this->getLayout()->getBlock('head')) {
             $head->addItem('skin_css', 'css/callback/callback.css');
+            $head->addItem('js', 'lib/jquery/jquery-1.10.2.min.js');
+            $head->addItem('js', 'lib/jquery/noconflict.js');
             $head->addItem('skin_js', 'js/callback/callback.js');
         }
         return parent::_prepareLayout();

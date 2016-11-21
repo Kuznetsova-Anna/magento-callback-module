@@ -55,6 +55,7 @@ class Itdelight_Callback_AjaxController extends Mage_Core_Controller_Front_Actio
 
                 $response['status']  = $helper->__('SUCCESS');
                 $response['message'] = $helper->__('Your inquiry was submitted and will be responded to as soon as possible. Thank you for contacting us.');
+                $this->getResponse()->clearHeaders()->setHeader('Content-type','application/json',true);
                 $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($response));
                 $myFormModel = Mage::getModel('itdelight_callback/callback');
                 $myFormModel->setData($post)->save();
@@ -64,6 +65,7 @@ class Itdelight_Callback_AjaxController extends Mage_Core_Controller_Front_Actio
             } catch (Exception $e) {
                 $response['status']  = $helper->__('ERROR');
                 $response['message'] = $errorMessageShown;
+                $this->getResponse()->clearHeaders()->setHeader('Content-type','application/json',true);
                 $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($response));
 
                 return;
